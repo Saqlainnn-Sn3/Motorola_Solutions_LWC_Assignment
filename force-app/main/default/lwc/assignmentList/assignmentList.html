@@ -1,0 +1,64 @@
+<template>
+
+    <lightning-card>
+
+        <div lwc:if={HideNShowFlags.isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+
+        <div class="slds-m-around_medium">
+
+            <lightning-input type="search" onchange={handleSearch} class="slds-m-bottom_small" label="Search Title">
+            </lightning-input>
+
+            <div lwc:if={dynamicHideNShowFlags.showTable}>
+
+                <div class="slds-m-bottom_small">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={tableData}
+                        columns={tableColumn}
+                        onrowaction={handleRowAction}
+                        hide-checkbox-column
+                    >
+                    </lightning-datatable>
+                </div>
+
+                <lightning-layout horizontal-align="space">
+
+                    <lightning-layout-item flexibility="auto">
+                        <lightning-button label="Previous" icon-name="utility:chevronleft" onclick={previousHandler} disabled={dynamicHideNShowFlags.prevButton}>
+                        </lightning-button>
+                    </lightning-layout-item>
+
+                    <lightning-layout-item flexibility="auto">
+                        Page {currentPage} of {totalPages}
+                    </lightning-layout-item>
+
+                    <lightning-layout-item flexibility="auto">
+                        <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" onclick={nextHandler} disabled={dynamicHideNShowFlags.nextButton}>
+                        </lightning-button>
+                    </lightning-layout-item>
+
+                </lightning-layout>
+            </div>
+
+            <div lwc:else class="slds-align_absolute-center">
+                <div class="slds-text-heading_small">No Assignments Found</div>
+            </div>
+
+        </div>
+
+    </lightning-card>
+
+    <div lwc:if={HideNShowFlags.showDetailsPage} class="child_style">
+        <c-generic-record-details-page 
+            object-api-name="Assignment__c" 
+            record-id={detailPageRecordId} 
+            fields={detailPageFields}
+            mode={detailPageMode}
+            onclosemodal={handleModal}
+        >
+        </c-generic-record-details-page>
+    </div>
+</template>

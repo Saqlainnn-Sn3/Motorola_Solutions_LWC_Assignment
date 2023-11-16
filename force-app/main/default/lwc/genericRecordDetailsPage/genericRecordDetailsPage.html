@@ -1,0 +1,24 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-label="Meaningful description of the modal content"
+        class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <div class="slds-modal__close slds-button_icon-inverse">
+                <lightning-button-icon variant="border-inverse" icon-name="utility:close" class="slds-m-left_xx-small" title="Close" onclick={closeModal}>
+                </lightning-button-icon>
+            </div>
+
+            <div class="slds-modal__content slds-p-around_medium slds-modal__content_headless" id="modal-content-id-1">
+                <lightning-record-form 
+                    object-api-name={objectApiName} 
+                    record-id={recordId} 
+                    fields={fields} 
+                    mode={mode}
+                    onsuccess={handleSuccess}
+                >
+                </lightning-record-form>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+</template>

@@ -1,0 +1,34 @@
+<template>
+
+    <lightning-card title={title} icon-name="standard:account">
+
+        <lightning-button-group slot="actions">
+            <lightning-button label="Clear" onclick={handleClear}></lightning-button>
+        </lightning-button-group>
+        
+        <form>
+            <lightning-layout multiple-rows class="slds-p-horizontal_small">
+                <lightning-layout-item size="12" padding="slds-p-around_x-small">
+                    <lightning-input data-id="input_field" data-name="Title__c" type="text" label="Title" value={assignmentRecord.Title__c}
+                        required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="slds-p-around_x-small">
+                    <lightning-textarea data-id="input_field" data-name="Description__c" label="Description" value={assignmentRecord.Description__c}
+                        required></lightning-textarea>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="slds-p-around_x-small">
+                    <lightning-input data-id="input_field" data-name="DueDate__c" type="date" label="DueDate" value={assignmentRecord.DueDate__c}
+                        required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="12" padding="slds-p-around_x-small">
+                    <lightning-combobox data-id="input_field" data-name="Status__c" label="Status" value={assignmentRecord.Status__c}
+                        options={statusOptions} required></lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+        </form>
+        <p slot="footer">
+            <lightning-button variant="brand" label={upsertButtonLabel} onclick={handleSave} disabled={hideNShow.hideSave}></lightning-button>
+        </p>
+
+    </lightning-card>
+</template>
